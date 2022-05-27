@@ -17,6 +17,9 @@
     },
 
     // Remix takes care of building everything in `remix build`.
-    "noEmit": true
+    "noEmit": true,
+
+    // https://github.com/cloudflare/workers-types/issues/85
+    "types": ["@cloudflare/workers-types"]
   }
 }

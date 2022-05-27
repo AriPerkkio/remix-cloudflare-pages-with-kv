@@ -32,7 +32,11 @@ export default function Index() {
 }
 
 function getKv(context: any) {
-  if (!context || !context.REMIX_CF_PAGES_DEMO_KV) {
+  if (!context) {
+    throw new Error("context not available");
+  }
+
+  if (!context.REMIX_CF_PAGES_DEMO_KV) {
     throw new Error("context.REMIX_CF_PAGES_DEMO_KV not available");
   }
 

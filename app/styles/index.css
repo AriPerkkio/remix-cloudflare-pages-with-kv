@@ -1,0 +1,50 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  margin: 0 1rem;
+
+  color: white;
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+}
+
+img {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  img {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+h1 {
+  margin: 2rem 0;
+  font-size: inherit;
+  font-weight: 400;
+}
+
+button {
+  cursor: pointer;
+  font-size: inherit;
+  margin-bottom: 2rem;
+}
+
+a {
+  color: #61dafb;
+  white-space: nowrap;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

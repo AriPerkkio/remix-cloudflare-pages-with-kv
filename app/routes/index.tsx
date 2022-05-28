@@ -1,44 +1,38 @@
-import { redirect } from "@remix-run/cloudflare";
-import type { ActionFunction, LoaderFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { Form, useLoaderData } from "@remix-run/react";
+import { redirect } from "@remix-run/cloudflare";
+import type { ActionFunction, LoaderFunction } from "@remix-run/cloudflare";
+
+import { getCounter, increaseCounter } from "~/models/counter.server";
+import type { Counter } from "~/models/counter.server";
+
+interface LoaderData {
+  counter: Counter;
+}
 
 export const loader: LoaderFunction = async ({ context }) => {
-  return json(await getKv(context).get("count", { type: "text" }));
+  const counter = await getCounter(context);
+
+  return json<LoaderData>({ counter });
 };
 
 export const action: ActionFunction = async ({ context }) => {
-  const currentValue = await getKv(context).get("count", { type: "text" });
-  const nextValue = 1 + parseInt(currentValue || "0");
-
-  await getKv(context).put("count", nextValue.toString());
+  await increaseCounter(context);
 
   return redirect("/");
 };
 
 export default function Index() {
-  const count = useLoaderData();
+  const { counter } = useLoaderData<LoaderData>();
 
   return (
     <main>
       <h1>Remix + Cloudflare Pages + Cloudflare KV</h1>
-      <p>Count is {parseInt(count) || 0}</p>
+      <p>Count is {counter}</p>
 
       <Form method="post">
         <button type="submit">Increase</button>
       </Form>
     </main>
   );
-}
-
-function getKv(context: any) {
-  if (!context) {
-    throw new Error("context not available");
-  }
-
-  if (!context.REMIX_CF_PAGES_DEMO_KV) {
-    throw new Error("context.REMIX_CF_PAGES_DEMO_KV not available");
-  }
-
-  return context.REMIX_CF_PAGES_DEMO_KV as KVNamespace;
 }

@@ -24,7 +24,8 @@ img {
 }
 
 h1 {
-  margin: 2rem 0;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
   font-size: inherit;
   font-weight: 400;
 }

@@ -23,17 +23,17 @@ function getKv(context: AppLoadContext): KVNamespace {
     throw new Error("context not available");
   }
 
-  if (!context.REMIX_CF_PAGES_DEMO_KV) {
-    throw new Error("context.REMIX_CF_PAGES_DEMO_KV not available");
+  if (!context.REMIX_CLOUDFLARE_PAGES_WITH_KV) {
+    throw new Error("context.REMIX_CLOUDFLARE_PAGES_WITH_KV not available");
   }
 
-  if (!isKvNamespace(context.REMIX_CF_PAGES_DEMO_KV)) {
+  if (!isKvNamespace(context.REMIX_CLOUDFLARE_PAGES_WITH_KV)) {
     throw new Error(
-      "context.REMIX_CF_PAGES_DEMO_KV doesnt look like KVNamespace"
+      "context.REMIX_CLOUDFLARE_PAGES_WITH_KV doesnt look like KVNamespace"
     );
   }
 
-  return context.REMIX_CF_PAGES_DEMO_KV;
+  return context.REMIX_CLOUDFLARE_PAGES_WITH_KV;
 }
 
 function isKvNamespace(kvNamespace: any): kvNamespace is KVNamespace {

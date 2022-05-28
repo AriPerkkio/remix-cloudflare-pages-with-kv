@@ -1,11 +1,11 @@
 {
-  "name": "remix-cf-pages-demo",
+  "name": "remix-cloudflare-pages-with-kv",
   "private": true,
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
     "dev:remix": "remix watch",
-    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public --kv REMIX_CF_PAGES_DEMO_KV",
+    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public --kv REMIX_CLOUDFLARE_PAGES_WITH_KV",
     "dev": "remix build && run-p dev:*",
     "start": "cross-env NODE_ENV=production npm run dev:wrangler"
   },

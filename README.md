@@ -22,7 +22,15 @@ kv_namespaces = [
 ]
 ```
 
-4. Setup KV Namespace binding for Cloudflare Pages
+4. Include KV Namespace in local development script in `package.json`:
+
+```diff
+"scripts": {
+-  "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
++  "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public --kv REMIX_CLOUDFLARE_PAGES_WITH_KV",
+```
+
+5. Setup KV Namespace binding for Cloudflare Pages
 
 - Select project from [Cloudflare Dashboard](https://dash.cloudflare.com/)
   - `Settings`
@@ -33,4 +41,4 @@ kv_namespaces = [
   - `KV namespace=worker-REMIX_CLOUDFLARE_PAGES_WITH_KV`
   - `Save`
 
-5. Redeploy project and wait for 2-3 mins
+6. Redeploy project and wait for 2-3 mins
